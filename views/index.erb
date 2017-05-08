@@ -1,19 +1,24 @@
 <html>
   <head>
     <style>
-      body {
-        background: gray;
-        padding-top: 100px;
-        text-align:center;
-        font-size: 50px;
+    body {
+      background: gray;
+      padding-top: 100px;
+      text-align:center;
+      font-size: 50px;
+    }
+      .after {
+        font-size: 10px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <form>
+    <form class = "main">
   		<input type='text' name='guess' />
   		<input type='submit' value='Enter a word' />
 	</form>
   <p><%= message %></p>
+  <p class = "after">Hahaha! Now you'll never know what you just said!<p>
   </body>
 </html>
