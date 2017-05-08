@@ -5,11 +5,15 @@ def cipher(user_input)
 	alphabet = ("a".."z").to_a
 
 	index_array = []
-	split_input = user_input.split(%r{\s*})
+	split_input = user_input.split("")
 	split_input.each do |character|
 		letter_index = alphabet.index(character)
 		cipher = letter_index + 5
-		letter = alphabet[cipher]
+		if cipher >= 26
+			letter = alphabet[cipher -26 ]
+		else
+			letter = alphabet[cipher]
+		end
 		index_array.push(letter)
 
 	end
@@ -19,5 +23,6 @@ end
 get '/' do
 	guess = params["guess"].to_s
 	message = cipher(guess)
-	erb :index, :locals => {:message => message}
+	little_ditty = "hahaha! Now you'll never know what you just said!"
+	erb :index, :locals => {:message => message, :little_ditty => little_ditty}
 end
