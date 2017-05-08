@@ -1,3 +1,6 @@
+require 'sinatra'
+require 'sinatra/reloader' if development?
+
 def cipher(user_input)
 	alphabet = ("a".."z").to_a
 
@@ -13,7 +16,8 @@ def cipher(user_input)
 	index_array.join()
 end
 
-def user_input
-	gets.chomp
+get '/' do
+	guess = params["guess"].to_s
+	message = cipher(guess)
+	erb :index, :locals => {:message => message}
 end
-
