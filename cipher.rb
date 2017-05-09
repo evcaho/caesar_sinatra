@@ -8,11 +8,15 @@ def cipher(user_input)
 	split_input = user_input.split("")
 	split_input.each do |character|
 		letter_index = alphabet.index(character)
-		cipher = letter_index + 5
-		if cipher >= 26
-			letter = alphabet[cipher -26 ]
+		if character != " "
+			cipher = letter_index + 5
+			if cipher >= 26
+				letter = alphabet[cipher -26 ]
+			else
+				letter = alphabet[cipher]
+			end
 		else
-			letter = alphabet[cipher]
+			letter = " "
 		end
 		index_array.push(letter)
 
@@ -20,9 +24,17 @@ def cipher(user_input)
 	index_array.join()
 end
 
+def teaser(user_input)
+	input_array = user_input.split("").to_a
+	if ("a".."z").include?(input_array[0])
+		"hahaha! Now you'll never know what you just said!"
+	end
+end
+
+
 get '/' do
 	guess = params["guess"].to_s
 	message = cipher(guess)
-	little_ditty = "hahaha! Now you'll never know what you just said!"
-	erb :index, :locals => {:message => message, :little_ditty => little_ditty}
+	teaser = teaser(guess)
+	erb :index, :locals => {:message => message, :teaser => teaser}
 end
